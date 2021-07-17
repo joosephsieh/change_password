@@ -31,7 +31,7 @@ def validate_password_with_system(password):
 
 
 def validate_password_scheme(password):
-    if not re.match(r"^[\w\d!@#$&*]{18,}$", password):
+    if not re.match(r"^[a-zA-Z\d!@#$&*]{18,}$", password):
         return False, StatusCodeToMessage[StatusCode.NOT_MATCH_RULE]
     if not re.match(r"^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$&*]).*$", password):
         return False, StatusCodeToMessage[StatusCode.NOT_MATCH_COMPLEXITY]

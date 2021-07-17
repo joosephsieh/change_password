@@ -51,6 +51,12 @@ def test_validate_password_unsupported_char():
 
 
 @pytest.mark.usefixtures("mock_validate_password_with_system_success")
+def test_validate_password_unsupported_doublebyte():
+    result = validate_password(old="old_password", new="1qaz@WS測試X3e$V5tgb")
+    assert result == (False, "At least 18 alphanumeric characters and list of special chars !@#$&*.")
+
+
+@pytest.mark.usefixtures("mock_validate_password_with_system_success")
 def test_validate_password_no_uppercase():
     result = validate_password(old="old_password", new="1qaz@wsx3edc$rf!@#$&*")
     assert result == (False, "At least 1 upper case, 1 lower case ,1 numeric, and 1 special character.")

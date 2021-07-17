@@ -1,5 +1,7 @@
-from flask import app, request, jsonify
-from libs.password import validate_password, save_password
+from flask import Flask, request, render_template
+from libs.func import validate_password, save_password
+
+app = Flask(__name__)
 
 
 @app.route("/change_password", methods=["POST"])
@@ -14,3 +16,7 @@ def change_password():
         else:
             return "Unknown error", 500
     return message, 400
+
+
+if __name__ == '__main__':
+    app.run()
